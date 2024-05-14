@@ -51,13 +51,6 @@ Test and Run the Job.
 
 #### Steps:
 
-1.Configure sudoers File:
-
-```bash
-
-echo 'jenkins ALL=(ALL) NOPASSWD: /bin/systemctl restart httpd' | sudo tee -a /etc/sudoers
-Create Jenkins Job:
-```
 1.Configure as a Freestyle project.
 
 Set as downstream job of nautilus-app-deployment.
