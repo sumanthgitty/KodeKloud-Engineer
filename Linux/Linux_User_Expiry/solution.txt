@@ -1,0 +1,15 @@
+1. SSH into App Server 2
+
+    ssh steve@stapp02
+
+2. Login as root user
+
+    sudo -i
+
+3. create a temporary user (anita) with an expiry date
+
+    useradd -e 2021-01-28 anita
+
+4. Verify user creation and expiration date
+
+    chage -l anita

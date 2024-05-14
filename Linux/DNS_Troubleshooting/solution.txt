@@ -1,0 +1,11 @@
+1. SSH into App Server 1, then login as root user
+
+    tony@stapp01
+    sudo -i
+
+2. Edit the /etc/resolv.conf file to contain Google public DNS (IPv4)
+
+    vi /etc/resolv.conf
+    nameserver 8.8.8.8
+
+3. Save and Submit.

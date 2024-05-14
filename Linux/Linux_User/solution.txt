@@ -1,0 +1,13 @@
+1. SSh into app-server 3
+
+    ssh banner@stapp03
+
+2. Login as root user
+
+    sudo -i
+
+3. create a new user 'rose' with no interactive shell
+
+    useradd rose -s /sbin/nologin
+
+4. Submit task
