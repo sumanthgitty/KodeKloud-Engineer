@@ -1,15 +1,16 @@
-nautilus-app-deployment Job:
+### nautilus-app-deployment Job:
 
-Steps:
+#### Steps:
 
 1.Generate SSH Key Pair:
 
-bash
+```bash
 
 ssh-keygen -t rsa -b 4096 -C "jenkins@jenkins-server"
 ssh-copy-id user@server1
 ssh-copy-id user@server2
 ssh-copy-id user@server3
+```
 
 2.Configure Jenkins:
 
@@ -24,7 +25,7 @@ Configure as a Pipeline job.
 Set agent to run on "Storage Server".
 Define stages in the pipeline:
 
-groovy
+```groovy
 
 pipeline {
     agent {
@@ -43,19 +44,20 @@ pipeline {
         }
     }
 }
+```
 Test and Run the Job.
 
-manage-services Job:
+### manage-services Job:
 
-Steps:
+#### Steps:
 
 1.Configure sudoers File:
 
-bash
+```bash
 
 echo 'jenkins ALL=(ALL) NOPASSWD: /bin/systemctl restart httpd' | sudo tee -a /etc/sudoers
 Create Jenkins Job:
-
+```
 1.Configure as a Freestyle project.
 
 Set as downstream job of nautilus-app-deployment.
@@ -66,10 +68,10 @@ Add build trigger to only execute when upstream job is stable.
 2.Define Build Steps:
 
 Add build step to execute shell commands.
-
+```
 ssh user@server1 'sudo systemctl restart httpd'
 ssh user@server2 'sudo systemctl restart httpd'
 ssh user@server3 'sudo systemctl restart httpd'
-
+```
 3.Save the job configuration.
 Trigger the job manually or let it run automatically when the nautilus-app-deployment job completes successfully.
