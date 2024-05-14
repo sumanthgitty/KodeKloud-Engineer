@@ -1,11 +1,11 @@
 ### Automate Deployment of Web Application
 
-1.Install and Configure httpd on All App Servers:
+##### 1.Install and Configure httpd on All App Servers:
 
 Manually install httpd on all app servers using the default version available in the yum repository.
 Configure httpd to serve on port 8080 on all app servers by editing the httpd configuration file present under /etc/httpd/conf/.
 
-2.Configure Jenkins Job for Automatic Deployment:
+##### 2.Configure Jenkins Job for Automatic Deployment:
 
 Create Jenkins Job:
 Name: nautilus-app-deployment
@@ -43,7 +43,7 @@ pipeline {
 }
 ```
 
-3.Update and Push Changes to Git Repository:
+##### 3.Update and Push Changes to Git Repository:
 
 SSH into the Storage Server using sarah's user credentials.
 Update the content of the index.html file in the cloned Git repository named web under sarah user's home to "Welcome to the xFusionCorp Industries".
