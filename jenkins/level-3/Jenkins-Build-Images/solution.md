@@ -28,7 +28,7 @@
      - **Password:** `your_password_for_app_server_2`
    - Click `OK` to save the credentials.
 
-3. **Add App Server 2 as a Jenkins Agent:**
+3. **Install java on Appserver2 and Add App Server 2 as a Jenkins Agent:**
    - Go to `Manage Jenkins` > `Manage Nodes and Clouds` > `New Node`.
    - Enter the details for App Server 2:
      - **Node Name:** `App_server_2`

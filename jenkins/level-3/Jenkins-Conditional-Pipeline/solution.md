@@ -7,7 +7,7 @@ Similarly, click on the Gitea button on the top bar to access the Gitea UI. Logi
 
 # Also add necessary plugins like git, pipeline, SSH, SSH on agent in jenkins and Restart the jenkins.
 
-#### 2.Add Slave Node:
+#### 2.Install Java on Storage Server and Add Slave Node in Jenkins :
 
 Go to Jenkins UI.
 Navigate to "Manage Jenkins" > "Manage Nodes and Clouds" > "New Node".
