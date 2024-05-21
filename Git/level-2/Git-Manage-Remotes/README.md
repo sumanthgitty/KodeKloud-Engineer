@@ -13,18 +13,27 @@ c. Finally push master branch to this new remote origin.
 #### steps
 
 #### Step 1: Navigate to the repository directory
+```bash
 cd /usr/src/kodekloudrepos/ecommerce
+```
 
 #### Step 2: Add a new remote dev_ecommerce
+```bash
 git remote add dev_ecommerce /opt/xfusioncorp_ecommerce.git
+```
 
 #### Step 3: Copy the index.html file into the repository
+```bash
 cp /tmp/index.html .
+```
 
 #### Step 4: Add and commit the file to the master branch
+```bash
 git add index.html
 git commit -m "Add index.html file to master branch"
+```
 
 #### Step 5: Push the master branch to the new remote dev_ecommerce
+```bash
 git push dev_ecommerce master
-
+```
