@@ -32,3 +32,4 @@ git rebase --continue
 ```bash
 git push origin feature --force
 ```
+Use --force or --force-with-lease to push after a rebase to update the remote branch.
