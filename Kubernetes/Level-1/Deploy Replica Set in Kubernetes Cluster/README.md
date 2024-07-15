@@ -29,7 +29,6 @@ spec:
   selector:
     matchLabels:
       app: nginx_app
-      type: app
   template:
     metadata:
       labels:
