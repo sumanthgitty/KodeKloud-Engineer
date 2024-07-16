@@ -19,7 +19,7 @@ You can access all my completed Hands-on tasks on DevOps technologies here:
 - [Git](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/Git)
 
 ## Screenshot
-![Screenshot of My KodeKloud Engineer Profile](https://github.com/sumanthgitty/KodeKloud-Engineer/blob/main/screenshot/kodekloud.png)
+![Screenshot of My KodeKloud Engineer Profile](https://github.com/sumanthgitty/KodeKloud-Engineer/blob/main/screenshot/kodekloud.JPG)
 
 ## Roles and Points Needed
 
