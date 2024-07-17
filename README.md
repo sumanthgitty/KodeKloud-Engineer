@@ -20,7 +20,7 @@ You can access all my completed Hands-on tasks on DevOps technologies here:
 - [Kubernetes](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/Kubernetes)
 
 ## Screenshot
-![Screenshot of My KodeKloud Engineer Profile](https://github.com/sumanthgitty/KodeKloud-Engineer/blob/main/screenshot/kodekloud.JPG)
+![Screenshot of My KodeKloud Engineer Profile](https://github.com/sumanthgitty/KodeKloud-Engineer/blob/main/Screenshot%20and%20Certificates/kodekloud.JPG)
 
 ## Roles and Points Needed
 
