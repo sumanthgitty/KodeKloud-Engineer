@@ -20,13 +20,13 @@ Make sure you have the following configuration files:
 
 **Apply the Deployment configuration** to your cluster:
 
-   ```
+   ```yaml
    kubectl apply -f deployment.yml
    ```
 
 ## step 3: Verify that the Deployment is running:
 
-    ```
+    ```yaml
     kubectl get deployments
     kubectl get pods
     ```
@@ -36,13 +36,13 @@ Navigate to the directory where your service.yml file is located if you aren't a
 
 Apply the Service configuration to your cluster:
 
-    ```
+    ```yaml
     kubectl apply -f service.yml
     ```
 
 Verify that the Service is running:
 
-    ```
+    ```yaml
     kubectl get services
     ```
 
