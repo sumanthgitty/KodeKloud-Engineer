@@ -31,7 +31,7 @@ kubectl apply -f <service.yaml>
 
 Deploy a single Jenkins pod using the jenkins/jenkins image.
 
--[deployment.yml](./deployment.yml)
+- [deployment.yml](./deployment.yml)
 
 ```bash
 kubectl apply -f <deployment.yaml>
