@@ -15,7 +15,7 @@ Create a deployment YAML file, grafana-deployment.yaml, with the following conte
 
 Apply the deployment:
 ```bash
-kubectl apply -f grafana-deployment.yaml
+kubectl apply -f deployment.yaml
 ```
 
 #### Step 2: Create the NodePort Service
@@ -25,7 +25,7 @@ Create a service YAML file, grafana-service.yaml, with the following content:
 
 Apply the service configuration:
 ```bash
-kubectl apply -f grafana-service.yaml
+kubectl apply -f service.yaml
 ```
 
 #### Step 3: Verify the Setup
@@ -38,6 +38,6 @@ You should see grafana-deployment-xfusion with READY status.
 
 Confirm the service is exposed on NodePort 32000:
 ```bash
-kubectl get svc grafana-service
+kubectl get svc 
 ```
 Access the Grafana login page by going to http://<Node_IP>:32000 in a web browser. Replace <Node_IP> with the IP of any node in the cluster.
