@@ -20,7 +20,7 @@ When a client requests a webpage, Apache uses PHP to process the request, which 
 
 ### Basic Troubleshooting Steps for LAMP
 
-#### Step 1: Verify Kubernetes Resources
+#### 1: Verify Kubernetes Resources
 Check Deployments, Services, Secrets, and Pods
 
 Run:
@@ -29,7 +29,7 @@ Run:
 kubectl get deployment,svc,secrets,pods
 ```
 
-#### step 2: Describe and Edit Service Ports
+#### 2: Describe and Edit Service Ports
 Verify that the servicePort, nodePort, and containerPort are set correctly to route traffic to the application. Use kubectl describe to check the configurations, and if needed, use kubectl edit to make adjustments:
 
 ```bash
@@ -56,7 +56,7 @@ lamp-service    NodePort    10.96.8.151    <none>        80:30008/TCP   3m45s
 mysql-service   ClusterIP   10.96.30.153   <none>        3306/TCP       3m46s
 ```
 
-#### step 3: Check Pod Logs
+#### 3: Check Pod Logs
 View logs for specific pods or containers to diagnose issues:
 
 ```bash
@@ -66,7 +66,7 @@ kubectl logs <pod-name> -c <container-name>
 Resource Access
 If accessing the app fails, confirm that the nodePort is accessible or port-forwarding is set up correctly.
 
-#### Step 4: Verify and Correct Configuration
+#### 4: Verify and Correct Configuration
 Correct PHP File (index.php)
 Access the pod, navigate to /app, and edit index.php if required:
 
@@ -79,7 +79,7 @@ service php-fpm status
 exit
 ```
 
-#### Step 5: Confirm Access to Application
+#### 5: Confirm Access to Application
 Access via NodePort: Use a browser to navigate to http://<node-ip>:<nodePort>.
 
 we should see the message: Connected successfully
