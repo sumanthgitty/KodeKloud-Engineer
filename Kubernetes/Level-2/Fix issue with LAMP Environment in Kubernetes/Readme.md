@@ -8,12 +8,14 @@ Also do not try to delete/modify any other existing components like deployment n
 ## How LAMP Stack Works
 The LAMP stack is a standard open-source platform for dynamic web applications:
 
-### Linux: The operating system that hosts the stack.
-### Apache: The web server that handles client requests.
-### MySQL: The database for storing application data.
-### PHP: The server-side language that generates dynamic content.
+#### Linux: The operating system that hosts the stack.
+#### Apache: The web server that handles client requests.
+#### MySQL: The database for storing application data.
+#### PHP: The server-side language that generates dynamic content.
 
 When a client requests a webpage, Apache uses PHP to process the request, which may involve retrieving data from MySQL, and serves the content back to the client.
+
+### For reference, you can view the correct configuration file here: [lamp-stack.yml](./Deploy-lamp-stack.yml)
 
 ## Solution
 ### Basic Troubleshooting Steps for LAMP
@@ -79,9 +81,8 @@ exit
 
 #### Step 5: Confirm Access to Application
 Access via NodePort: Use a browser to navigate to http://<node-ip>:<nodePort>.
-we should see the message: Connected successfully
 
-#### For reference, you can view the correct configuration file here: [lamp-stack.yml](./Deploy-lamp-stack.yml)
+we should see the message: Connected successfully
 
 #### Task Completion Steps
 Checked Kubernetes resources using kubectl get deployment,svc,secrets,pods.
