@@ -80,7 +80,7 @@ exit
 ```
 
 #### 5: Confirm Access to Application
-Access via NodePort: Use a browser to navigate to http://<node-ip>:<nodePort>.
+Access via NodePort: Use a browser to navigate to http://node-ip:30008.
 
 we should see the message: Connected successfully
 
