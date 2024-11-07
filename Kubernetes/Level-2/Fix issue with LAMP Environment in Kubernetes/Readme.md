@@ -25,7 +25,7 @@ Secrets are already created but if you want to create a secrets you can use the 
 kubectl create secret generic database \
   --from-literal=MYSQL_ROOT_PASSWORD=123456 \
   --from-literal=MYSQL_DATABASE=kodekloud \
-  --from-literal=MYSQL_USER=kareem \
+  --from-literal=MYSQL_USER=sumanth \
   --from-literal=MYSQL_PASSWORD=123456 \
   --from-literal=MYSQL_HOST=mysql-service
 ```
