@@ -16,9 +16,7 @@ The LAMP stack is a standard open-source platform for dynamic web applications:
 When a client requests a webpage, Apache uses PHP to process the request, which may involve retrieving data from MySQL, and serves the content back to the client.
 
 ## Solution
-<<<<<<< HEAD
-### For reference, you can view the correct configuration file here: [lamp-stack.yml](./Deploy-lamp-stack.yml)
-=======
+
 ### For reference, you can view the correct configuration file here: 
 - [lamp-stack.yml](./Deploy-lamp-stack.yml) 
 - [index.php](./index.php)
@@ -32,7 +30,6 @@ kubectl create secret generic database \
   --from-literal=MYSQL_PASSWORD=123456 \
   --from-literal=MYSQL_HOST=mysql-service
 ```
->>>>>>> main
 
 ### Basic Troubleshooting Steps for LAMP
 
