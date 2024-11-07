@@ -8,10 +8,10 @@ Also do not try to delete/modify any other existing components like deployment n
 ## How LAMP Stack Works
 The LAMP stack is a standard open-source platform for dynamic web applications:
 
-*Linux: The operating system that hosts the stack.*
-*Apache: The web server that handles client requests.*
-*MySQL: The database for storing application data.*
-*PHP: The server-side language that generates dynamic content.*
+- *Linux: The operating system that hosts the stack.*
+- *Apache: The web server that handles client requests.*
+- *MySQL: The database for storing application data.*
+- *PHP: The server-side language that generates dynamic content.*
 
 When a client requests a webpage, Apache uses PHP to process the request, which may involve retrieving data from MySQL, and serves the content back to the client.
 
@@ -85,7 +85,7 @@ Access via NodePort: Use a browser to navigate to http://node-ip:nodeport in ter
 we should see the message: Connected successfully
 
 #### Task Completion Steps
-Checked Kubernetes resources using kubectl get deployment,svc,secrets,pods.
-Verified service port configurations with kubectl describe svc lamp-service and corrected as necessary using kubectl edit.
-Updated index.php in the container and restarted PHP-FPM to apply changes.
-Accessed the application to confirm proper functionality.
+- Checked Kubernetes resources using kubectl get deployment,svc,secrets,pods.
+- Verified service port configurations with kubectl describe svc lamp-service and corrected as necessary using kubectl edit.
+- Updated index.php in the container and restarted PHP-FPM to apply changes.
+- Accessed the application to confirm proper functionality.
