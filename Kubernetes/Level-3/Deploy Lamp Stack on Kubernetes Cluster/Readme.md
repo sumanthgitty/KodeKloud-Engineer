@@ -1,5 +1,6 @@
 #### Question
-### LAMP Stack Deployment on Kubernetes
+---
+#### LAMP Stack Deployment on Kubernetes
 1) Create a config map php-config for php.ini with variables_order = "EGPCS" data.
 
 2) Create a deployment named lamp-wp.
@@ -23,8 +24,7 @@ a) Copy this file into httpd container under Apache document root i.e /app and r
 b) You must be able to access this index.php on node port 30008 at the end, please note that you should see Connected successfully message while accessing this page.
 
 #### Solution
-
-# LAMP Stack Deployment on Kubernetes
+---
 
 This guide walks you through deploying a **LAMP stack (Linux, Apache, MySQL, PHP)** on Kubernetes using **Secrets**, **ConfigMaps**, and **Services**.
 
