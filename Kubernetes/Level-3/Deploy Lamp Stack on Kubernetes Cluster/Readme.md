@@ -45,7 +45,7 @@ kubectl create secret generic my-secret \
   --from-literal=MYSQL_HOST=mysql-service
 ```
 
-- [mysql-secrets.yml](./mysql-secrets.yml)
+- [mysql-secrets.yaml](./mysql-secrets.yml)
 
 ### **🔹 Why?**
 - Stores **sensitive credentials** securely without hardcoding in YAML files.
@@ -58,7 +58,7 @@ kubectl create secret generic my-secret \
 ```sh
 kubectl create configmap php-config --from-file=php.ini
 ```
-- [config-map.yml](./config-map.yml)
+- [config-map.yaml](./config-map.yml)
 
 ### **🔹 Why?**
 - Stores **non-sensitive configuration** (PHP settings) separately from Pods.
@@ -71,7 +71,7 @@ kubectl create configmap php-config --from-file=php.ini
 ### **📝 Deployment YAML**
 Save the following as `deployment.yaml`:
 
-- [deployment.yml](./deployment.yml)
+- [deployment.yaml](./deployment.yml)
 
 ### **🔹 Why?**
 - Defines **multi-container** Pod for **Apache+PHP** and **MySQL**.
@@ -85,7 +85,7 @@ Save the following as `deployment.yaml`:
 ### **Apache Service (Exposing Web App)**
 Save as `apache-service.yaml`:
 
-- [apache-service.yml](./apache-service.yml)
+- [apache-service.yaml](./apache-service.yml)
 
 ### **🔹 Why?**
 - Exposes Apache on **port 30008** to access it externally.
@@ -93,7 +93,7 @@ Save as `apache-service.yaml`:
 ### **MySQL Service (Internal Database Connection)**
 Save as `mysql-service.yaml`:
 
-- [mysql-service.yml](./mysql-service.yml)
+- [mysql-service.yaml](./mysql-service.yml)
 
 ### **🔹 Why?**
 - Makes MySQL **accessible only inside the cluster** using `mysql-service` as hostname.
