@@ -81,5 +81,4 @@ After applying the fixes, verify that Redis is working correctly by logging into
 
 ```bash
 kubectl exec -it <redis-pod-name> -- redis-cli ping
-```
 If Redis is running properly, you should receive a PONG response.
