@@ -4,14 +4,14 @@ There are a number of parameters that are used by the applications. We need to d
 Create a pod named envars.
 
 Container name should be fieldref-container, use image busybox preferable latest tag, use command 'sh', '-c' and args should be
-
+```sh
 'while true; do
       echo -en '/n';
                                   printenv NODE_NAME POD_NAME;
                                   printenv POD_IP POD_SERVICE_ACCOUNT;
               sleep 10;
          done;'
-
+```
 (Note: please take care of indentations)
 
 Define Four environment variables as mentioned below:
