@@ -44,4 +44,4 @@ Create a service for iron db which should be named iron-db-service-nautilus unde
 Create a service for iron gallery which should be named iron-gallery-service-nautilus under the same namespace. Configure spec as selector's run should be iron-gallery. Protocol should be TCP, port and targetPort should be 80, nodePort should be 32678 and its type should be NodePort.
 
 ## Solution 
- Check the Solution Here - [solution.md](./solution.md)
+ Check the Solution Here - [solution](./solution.md)
