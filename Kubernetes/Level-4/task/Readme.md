@@ -52,7 +52,6 @@ Deploying Drupal Application on Kubernetes
 - Create a **ClusterIP Service** named drupal-mysql-service.
 - Expose port 3306.
 - Select pods with label app: drupal-mysql.
-
 - [svc.yaml](./svc.yaml)
 
 #### 6. (Optional) Configure MySQL Environment Variables
