@@ -49,7 +49,6 @@ Deploying Drupal Application on Kubernetes
 - Expose port 80.
 - Set nodePort to 30095.
 - Select pods with label app: drupal.
-
 - Create a **ClusterIP Service** named drupal-mysql-service.
 - Expose port 3306.
 - Select pods with label app: drupal-mysql.
