@@ -117,8 +117,8 @@ apt update
 apt install nginx -y
 systemctl enable nginx
 systemctl start nginx
-Create or select SG to allow port 80 from 0.0.0.0/0.
 ```
+Create or select SG to allow port 80 from 0.0.0.0/0.
 ---
 ### 8: Sync Data Between Two Buckets (CLI)
 ```bash
@@ -135,7 +135,7 @@ Enable Storage Autoscaling, max: 50 GiB.
 Uncheck public access.
 
 Launch and wait until status is available.
-
+---
 ### 10: Make Existing RDS Public
 Go to RDS → Modify datacenter-rds.
 Enable Public Access.
