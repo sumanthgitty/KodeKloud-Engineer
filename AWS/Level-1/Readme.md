@@ -1,10 +1,10 @@
-# AWS Migration Tasks – Nautilus DevOps Project 
+# AWS Migration Tasks - Nautilus DevOps Project 
 
 This repository documents the 40 AWS tasks completed during the staged migration of Nautilus infrastructure to the AWS cloud. All steps are included using AWS Console or CLI.
 
 ---
 
-## ✅ Task List with Steps
+## Task List with Steps
 
 ### 1. Create Key Pair `datacenter-kp`
 ```sh
