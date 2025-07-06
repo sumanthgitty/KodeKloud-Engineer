@@ -35,8 +35,8 @@ Name the AMI as nautilus-ec2-ami.
 After creation, go to AMIs, select the AMI and click Launch Instance.
 Name the new instance nautilus-ec2-new and configure rest as needed.
 
-![screenshot](screenshots/1.png)
-
+![screenshot](screenshots/3.png)
+![screenshot](screenshots/3-1.png)
 ---
 ### 4: Setup Password-less SSH Access to EC2
 On aws-client host:
@@ -61,6 +61,8 @@ You can now SSH using the new key:
 ```bash
 ssh -i ~/.ssh/nautilus-key ubuntu@<instance-ip>
 ```
+![screenshot](screenshots/4.png)
+![screenshot](screenshots/4-1.png)
 ---
 ### 5: Setup ALB and Route Traffic
 Go to EC2 → Load Balancers → Create Application Load Balancer.
@@ -83,6 +85,7 @@ Routing Flow:
 ```vbnet
 Client → xfusion-sg (ALB SG) → ALB → Target Group → EC2 SG → Nginx on port 80
 ```
+
 ---
 ### 6: Create CloudWatch Alarm on EC2
 Go to CloudWatch → Alarms → Create Alarm.
