@@ -29,12 +29,14 @@ sudo resize2fs /dev/xvda1
 ```
 ---
 ### 3: Create AMI and Launch Instance
+```sh
 Go to EC2 → Instances → nautilus-ec2 → Actions → Create Image.
+```
 Name the AMI as nautilus-ec2-ami.
-
 After creation, go to AMIs, select the AMI and click Launch Instance.
 Name the new instance nautilus-ec2-new and configure rest as needed.
 
+#### Screenshots
 ![Screenshots](Screenshots/3.png)
 ![Screenshots](Screenshots/3-1.png)
 ---
@@ -50,41 +52,43 @@ Copy the public key:
 cat ~/.ssh/nautilus-key.pub
 ```
 SSH into the EC2 instance using original key.
-
 Append the key to ~/.ssh/authorized_keys on the EC2:
 
 ```bash
 echo "<copied-public-key>" >> ~/.ssh/authorized_keys
 ```
 You can now SSH using the new key:
-
 ```bash
 ssh -i ~/.ssh/nautilus-key ubuntu@<instance-ip>
 ```
+#### Screenshots
 ![Screenshots](Screenshots/4.png)
 ![Screenshots](Screenshots/4-1.png)
 ---
 ### 5: Setup ALB and Route Traffic
+```sh
 Go to EC2 → Load Balancers → Create Application Load Balancer.
-
 Name: xfusion-alb
 Scheme: internet-facing, Listeners: HTTP (80)
 VPC: default, Subnets: Select 2 AZs
-
+```
 Create a new Security Group:
+```sh
 Name: xfusion-sg
 Inbound rule: Port 80, Source: 0.0.0.0/0
-
+```
 Create a Target Group named xfusion-tg:
+```sh
 Type: Instance, Protocol: HTTP, Port: 80
 Register EC2 instance (xfusion-ec2) to target group.
-
+```
 Ensure EC2’s security group allows inbound HTTP from ALB's security group.
 
-Routing Flow:
+#### Routing Flow:
 ```vbnet
 Client → xfusion-sg (ALB SG) → ALB → Target Group → EC2 SG → Nginx on port 80
 ```
+#### Screenshots
 ![Screenshot](Screenshots/5.png)
 ![](Screenshots/5-1.png)
 ![](Screenshots/5-2.png)
@@ -92,18 +96,19 @@ Client → xfusion-sg (ALB SG) → ALB → Target Group → EC2 SG → Nginx on 
 ![](Screenshots/5-4.png)
 ---
 ### 6: Create CloudWatch Alarm on EC2
+```sh
 Go to CloudWatch → Alarms → Create Alarm.
 Select EC2 Metrics → CPU Utilization for xfusion-ec2.
 Set threshold to >= 90% for 1 period of 5 minutes.
 Notification: Select SNS topic xfusion-sns-topic.
 Name: xfusion-alarm.
+```
+#### Screenshots
 ![Screenshot](Screenshots/6.png)
 ---
 ### 7: Launch EC2 with User Data (Install Nginx)
 Go to EC2 → Launch Instance.
-
 Name: xfusion-ec2, AMI: Ubuntu, Type: t2.micro.
-
 Under Advanced Details → User data, paste:
 
 ```bash
@@ -136,4 +141,5 @@ Go to RDS → Modify datacenter-rds.
 Enable Public Access.
 In security group, allow inbound rule on port 3306 from 0.0.0.0/0.
 Save and apply immediately.
+#### Screenshots
 ![Screenshots](Screenshots/10.png)
