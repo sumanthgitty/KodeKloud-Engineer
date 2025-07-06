@@ -96,6 +96,7 @@ Client → xfusion-sg (ALB SG) → ALB → Target Group → EC2 SG → Nginx on 
 ![](Screenshots/5-2.png)
 ![](Screenshots/5-3.png)
 ![](Screenshots/5-4.png)
+
 ---
 ### 6: Create CloudWatch Alarm on EC2
 ```sh
