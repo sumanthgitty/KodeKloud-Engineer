@@ -14,6 +14,7 @@ Associate the EIP with the EC2 instance.
 ```
 ---
 ### 2: Expand EC2 Volume from 8 GiB to 12 GiB
+```sh
 1. Go to **EC2 → Instances → nautilus-ec2**.
 2. Note the **Volume ID** under the "Storage" tab.
 3. Go to **EC2 → Volumes → Select Volume ID**.
@@ -26,6 +27,7 @@ Run:
 ```bash
 sudo growpart /dev/xvda 1
 sudo resize2fs /dev/xvda1
+```
 ```
 ---
 ### 3: Create AMI and Launch Instance
