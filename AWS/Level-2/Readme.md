@@ -7,9 +7,11 @@ This README documents the AWS Level 2 tasks completed as part of the Nautilus De
 ## Task List with Steps
 
 ### 1: Launch EC2 and Attach Elastic IP
+```sh
 Go to EC2 → Launch Instance → AMI: Ubuntu → t2.micro → Name: xfusion-ec2.
 Create new Elastic IP: Name xfusion-eip.
 Associate the EIP with the EC2 instance.
+```
 ---
 ### 2: Expand EC2 Volume from 8 GiB to 12 GiB
 1. Go to **EC2 → Instances → nautilus-ec2**.
@@ -19,8 +21,8 @@ Associate the EIP with the EC2 instance.
 5. SSH into the instance using:
    ```bash
    ssh -i /root/nautilus-keypair.pem ubuntu@<public-ip>
+   ```
 Run:
-
 ```bash
 sudo growpart /dev/xvda 1
 sudo resize2fs /dev/xvda1
@@ -33,7 +35,7 @@ Name the AMI as nautilus-ec2-ami.
 After creation, go to AMIs, select the AMI and click Launch Instance.
 Name the new instance nautilus-ec2-new and configure rest as needed.
 
-![](screenshots/1.png)
+![screenshot](screenshots/1.png)
 
 ---
 ### 4: Setup Password-less SSH Access to EC2
