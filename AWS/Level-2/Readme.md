@@ -35,8 +35,8 @@ Name the AMI as nautilus-ec2-ami.
 After creation, go to AMIs, select the AMI and click Launch Instance.
 Name the new instance nautilus-ec2-new and configure rest as needed.
 
-![Screenshots](screenshots/3.png)
-![Screenshots](screenshots/3-1.png)
+![Screenshots](Screenshots/3.png)
+![Screenshots](Screenshots/3-1.png)
 ---
 ### 4: Setup Password-less SSH Access to EC2
 On aws-client host:
@@ -61,8 +61,8 @@ You can now SSH using the new key:
 ```bash
 ssh -i ~/.ssh/nautilus-key ubuntu@<instance-ip>
 ```
-![Screenshots](screenshots/4.png)
-![Screenshots](screenshots/4-1.png)
+![Screenshots](Screenshots/4.png)
+![Screenshots](Screenshots/4-1.png)
 ---
 ### 5: Setup ALB and Route Traffic
 Go to EC2 → Load Balancers → Create Application Load Balancer.
@@ -85,7 +85,11 @@ Routing Flow:
 ```vbnet
 Client → xfusion-sg (ALB SG) → ALB → Target Group → EC2 SG → Nginx on port 80
 ```
-
+![Screenshot](Screenshots/5.png)
+![](Screenshots/5-1.png)
+![](Screenshots/5-2.png)
+![](Screenshots/5-3.png)
+![](Screenshots/5-4.png)
 ---
 ### 6: Create CloudWatch Alarm on EC2
 Go to CloudWatch → Alarms → Create Alarm.
@@ -93,6 +97,7 @@ Select EC2 Metrics → CPU Utilization for xfusion-ec2.
 Set threshold to >= 90% for 1 period of 5 minutes.
 Notification: Select SNS topic xfusion-sns-topic.
 Name: xfusion-alarm.
+![Screenshot](Screenshots/6.png)
 ---
 ### 7: Launch EC2 with User Data (Install Nginx)
 Go to EC2 → Launch Instance.
@@ -131,3 +136,4 @@ Go to RDS → Modify datacenter-rds.
 Enable Public Access.
 In security group, allow inbound rule on port 3306 from 0.0.0.0/0.
 Save and apply immediately.
+![Screenshots](Screenshots/10.png)
