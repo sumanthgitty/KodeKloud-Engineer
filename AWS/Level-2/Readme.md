@@ -39,6 +39,7 @@ Name the new instance nautilus-ec2-new and configure rest as needed.
 #### Screenshots
 ![Screenshots](Screenshots/3.png)
 ![Screenshots](Screenshots/3-1.png)
+
 ---
 ### 4: Setup Password-less SSH Access to EC2
 On aws-client host:
@@ -64,6 +65,7 @@ ssh -i ~/.ssh/nautilus-key ubuntu@<instance-ip>
 #### Screenshots
 ![Screenshots](Screenshots/4.png)
 ![Screenshots](Screenshots/4-1.png)
+
 ---
 ### 5: Setup ALB and Route Traffic
 ```sh
@@ -105,6 +107,7 @@ Name: xfusion-alarm.
 ```
 #### Screenshots
 ![Screenshot](Screenshots/6.png)
+
 ---
 ### 7: Launch EC2 with User Data (Install Nginx)
 Go to EC2 → Launch Instance.
@@ -119,6 +122,7 @@ systemctl enable nginx
 systemctl start nginx
 ```
 Create or select SG to allow port 80 from 0.0.0.0/0.
+
 ---
 ### 8: Sync Data Between Two Buckets (CLI)
 ```bash
@@ -135,6 +139,7 @@ Enable Storage Autoscaling, max: 50 GiB.
 Uncheck public access.
 
 Launch and wait until status is available.
+
 ---
 ### 10: Make Existing RDS Public
 Go to RDS → Modify datacenter-rds.
