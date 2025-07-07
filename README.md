@@ -18,6 +18,7 @@ You can access all my completed Hands-on tasks on DevOps technologies here:
 - [Jenkins](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/jenkins)
 - [Git](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/Git)
 - [Kubernetes](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/Kubernetes)
+- [AWS](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/AWS)
 
 ## Screenshot
 ![Screenshot of My KodeKloud Engineer Profile](https://github.com/sumanthgitty/KodeKloud-Engineer/blob/main/Screenshot%20and%20Certificates/kodekloud.JPG)

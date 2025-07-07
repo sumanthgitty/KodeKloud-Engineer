@@ -149,3 +149,6 @@ In security group, allow inbound rule on port 3306 from 0.0.0.0/0.
 Save and apply immediately.
 #### Screenshots
 ![Screenshots](Screenshots/10.png)
+ 
+ ---
+will be updated 
