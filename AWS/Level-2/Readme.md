@@ -222,10 +222,10 @@ Allow only internal VPC CIDR for SSH/ICMP.
 ### 15: Lambda (Console)
 Description: Create a basic AWS Lambda function via Console.
 
-Create IAM Role: lambda_execution_role with Lambda basic permissions.
-Create Lambda: nautilus-lambda.
-Runtime: Python 3.x
-Function code:
+- Create IAM Role: lambda_execution_role with Lambda basic permissions.
+- Create Lambda: nautilus-lambda.
+- Runtime: Python 3.x
+- Function code:
 ```python
 import json
 def lambda_handler(event, context):
