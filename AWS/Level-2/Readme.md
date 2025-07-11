@@ -149,6 +149,201 @@ In security group, allow inbound rule on port 3306 from 0.0.0.0/0.
 Save and apply immediately.
 #### Screenshots
 ![Screenshots](Screenshots/10.png)
- 
- ---
-will be updated 
+
+---
+### 11: Take Snapshot and Restore RDS
+Description: Backup an existing RDS instance and verify it by restoring to a new instance.
+```sh
+Go to RDS → Databases → nautilus-rds → Take Snapshot.
+Name it: nautilus-snapshot.
+After snapshot is available → Actions → Restore Snapshot.
+Name new DB instance: nautilus-snapshot-restore.
+DB Instance class: db.t3.micro.
+Ensure instance is in Available state.
+```
+#### Screenshots:
+![ScreenShot 1](Screenshots/11.png)
+![ScreenShot 2](Screenshots/11-1.png)
+
+---
+### 12: Create Public VPC and EC2
+Description: Set up a new VPC with a public subnet and deploy an EC2 instance accessible over the internet.
+```sh
+Create VPC: nautilus-pub-vpc (CIDR: 10.0.0.0/16).
+Create Subnet: nautilus-pub-subnet (CIDR: 10.0.1.0/24).
+Enable Auto-assign Public IP in Subnet settings.
+Create and attach Internet Gateway.
+Create and associate Route Table to subnet (Add route to 0.0.0.0/0 → IGW).
+Launch EC2 instance nautilus-pub-ec2 in subnet.
+Open port 22 (SSH) in security group.
+```
+#### Screenshot:
+![ScreenShot 1](Screenshots/12.png)
+![ScreenShot 2](Screenshots/12-1.png)
+![ScreenShot 3](Screenshots/12-2.png)
+![ScreenShot 4](Screenshots/12-3.png)
+![ScreenShot 5](Screenshots/12-4.png)
+
+---
+### 13: VPC Peering (Private ↔ Public)
+Description: Enable communication between a public and a private VPC using VPC peering.
+```sh
+Create VPC Peering: nautilus-vpc-peering (Public ↔ Private).
+Accept peering request.
+Modify Route Tables in both VPCs:
+Public Route Table → add route to Private VPC CIDR → Peering Connection
+Private Route Table → add route to Public VPC CIDR → Peering Connection
+Modify private EC2 security group → allow ICMP from Public VPC CIDR.
+From AWS Client → SSH into public EC2 → ping private EC2.
+```
+#### Screenshot:
+![VPC Peering](Screenshots/13.png)
+![VPC Peering 1](Screenshots/13-1.png)
+![VPC Peering 2](Screenshots/13-2.png)
+![VPC Peering 3](Screenshots/13-3.png)
+![VPC Peering 4](Screenshots/13-4.png)
+
+---
+### 14: Private VPC and EC2 Setup
+Description: Create a fully isolated private VPC and subnet and launch a private EC2 instance.
+```sh
+Create VPC: nautilus-priv-vpc (CIDR: 10.0.0.0/16).
+Create Subnet: nautilus-priv-subnet (CIDR: 10.0.1.0/24).
+Launch EC2 nautilus-priv-ec2 in this subnet.
+```
+Create security group:
+```sh
+Allow only internal VPC CIDR for SSH/ICMP.
+```
+### Screenshot:
+![Private VPC EC2](Screenshots/14.png)
+
+---
+### 15: Lambda (Console)
+Description: Create a basic AWS Lambda function via Console.
+
+Create IAM Role: lambda_execution_role with Lambda basic permissions.
+Create Lambda: nautilus-lambda.
+Runtime: Python 3.x
+Function code:
+```python
+import json
+def lambda_handler(event, context):
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Welcome to KKE AWS Labs!')
+    }
+```
+Test the function.
+
+#### Screenshot:
+![Lambda Console](Screenshots/15.png)
+
+---
+### 16: Lambda via CLI
+Description: Deploy a Lambda function via AWS CLI.
+
+Create lambda_function.py as above.
+
+Run:
+```bash
+zip function.zip lambda_function.py
+```
+Run:
+```bash
+aws lambda create-function \
+--function-name xfusion-lambda-cli \
+--runtime python3.12 \
+--zip-file fileb://function.zip \
+--handler lambda_function.lambda_handler \
+--role arn:aws:iam::<account_id>:role/lambda_execution_role \
+--region us-east-1
+```
+Test via:
+```bash
+aws lambda invoke --function-name xfusion-lambda-cli out.json
+cat out.json
+```
+#### Screenshot:
+![Lambda CLI](Screenshots/16.png)
+![Lambda CLI 1](Screenshots/16-1.png)
+![Lambda CLI 2](Screenshots/16-2.png)
+
+---
+### 17: Troubleshoot Nginx EC2 Internet Issue
+Description: Web server not accessible; verify internet setup for EC2.
+```sh
+Enable Auto-Assign Public IP in Subnet.
+Attach Internet Gateway to VPC.
+Update Route Table → add route 0.0.0.0/0 → IGW.
+Ensure port 80 is open in SG.
+Restart Nginx if needed.
+```
+#### Screenshot:
+![Nginx Fix](Screenshots/17.png)
+![Nginx Fix 1](Screenshots/17-1.png)
+![Nginx Fix 2](Screenshots/17-2.png)
+![Nginx Fix 3](Screenshots/17-3.png)
+
+---
+
+#### 18: EC2 Cannot Install Packages (Fix)
+Description: EC2 in public subnet cannot access internet.
+```sh
+Edit EC2's Security Group:
+Add Outbound Rule: All traffic → 0.0.0.0/0
+Verify IGW, public IP, and subnet settings.
+```
+#### Screenshot:
+![Outbound Fix](Screenshots/18.png)
+
+---
+#### 19: Push Docker Image to ECR
+Description: Build and push a Docker image to private ECR repo.
+
+Create ECR repo: datacenter-ecr.
+
+Authenticate:
+
+```bash
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account>.dkr.ecr.us-east-1.amazonaws.com
+```
+Build image:
+```bash
+cd /root/pyapp
+docker build -t datacenter:latest .
+```
+Tag & push:
+```bash
+docker tag datacenter:latest <account>.dkr.ecr.us-east-1.amazonaws.com/datacenter-ecr:latest
+docker push <account>.dkr.ecr.us-east-1.amazonaws.com/datacenter-ecr:latest
+```
+#### Screenshot:
+![ECR Upload](Screenshots/19.png)
+![ECR Upload 1](Screenshots/19-1.png)
+![ECR Upload 2](Screenshots/19-2.png)
+![ECR Upload 3](Screenshots/19-3.png)
+
+---
+### 20: Internet Access for Private EC2 via NAT Gateway
+Description: Enable private EC2 to access internet using NAT Gateway.
+```sh
+Create Public Subnet: datacenter-pub-subnet (Auto-assign IP enabled).
+Create and attach Internet Gateway to VPC.
+Create Route Table → 0.0.0.0/0 → IGW → associate with public subnet.
+Allocate Elastic IP.
+Create NAT Gateway in public subnet → associate EIP.
+Update Private Route Table:
+0.0.0.0/0 → NAT Gateway.
+Associate private subnet to this route table.
+Wait and check S3 bucket for uploaded file.
+```
+#### Screenshot:
+![NAT Gateway](Screenshots/20.png)
+![NAT Gateway](Screenshots/20-1.png)
+![NAT Gateway](Screenshots/20-2.png)
+![NAT Gateway](Screenshots/20-3.png)
+![NAT Gateway](Screenshots/20-4.png)
+![NAT Gateway](Screenshots/20-5.png)
+![NAT Gateway](Screenshots/20-6.png)
+![NAT Gateway](Screenshots/20-7.png)
