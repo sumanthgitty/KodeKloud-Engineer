@@ -4,6 +4,7 @@ This repository contains Terraform configurations developed to support the phase
 Each task below outlines a specific infrastructure requirement and includes the corresponding Terraform configuration necessary to accomplish it.
 
 #### 1. Generate an EC2 Key Pair Using Terraform
+---
 Create a key pair in AWS for SSH access to EC2 instances using Terraform.
 
 Solution - 
@@ -27,6 +28,7 @@ resource "local_file" "private_key" {
 ```
 ---
 #### 2. Create a Security Group for EC2
+---
 Define a security group to allow inbound SSH access and manage basic rules using Terraform.
 
 Solution - 
@@ -52,6 +54,7 @@ resource "aws_security_group" "my_sg" {
 ```
 ---
 #### 3. Create a New VPC Using Terraform
+---
 Provision a new Virtual Private Cloud (VPC) with default CIDR configuration.
 
 Solution -
@@ -66,6 +69,7 @@ resource "aws_vpc" "main" {
 ```
 ---
 #### 4. Provision a VPC with a Custom CIDR Block
+---
 Launch a VPC with a user-defined CIDR block using Terraform.
 
 Solution - 
@@ -80,6 +84,7 @@ resource "aws_vpc" "custom_vpc" {
 ```
 ---
 #### 5. Launch a VPC with IPv6 Support
+---
 Create a VPC with both IPv4 and IPv6 support using Terraform.
 
 Solution - 
@@ -95,6 +100,7 @@ resource "aws_vpc" "dualstack_vpc" {
 ```
 ---
 #### 6. Allocate an Elastic IP Address
+---
 Create a static Elastic IP address for public-facing services using Terraform.
 
 Solution - 
@@ -109,6 +115,7 @@ resource "aws_eip" "nautilus_eip" {
 ```
 ---
 #### 7. Launch an EC2 Instance
+---
 Provision an EC2 instance with a specific AMI and instance type using Terraform.
 
 Solution -
@@ -127,6 +134,7 @@ resource "aws_instance" "web" {
 ```
 ---
 #### 8. Create an AMI from EC2 Instance
+---
 Capture an Amazon Machine Image (AMI) from a running EC2 instance.
 
 Solution - 
@@ -143,6 +151,7 @@ resource "aws_ami_from_instance" "xfusion_ec2_ami" {
 ```
 ---
 #### 9. Create an EBS Volume
+---
 Provision an EBS volume with a specific size and volume type.
 
 Solution - 
@@ -159,6 +168,7 @@ resource "aws_ebs_volume" "example" {
 ```
 ---
 #### 10. Create a Snapshot from an EBS Volume
+---
 Take a snapshot of an existing EBS volume to enable future backups or restores.
 
 Solution - 
