@@ -193,3 +193,118 @@ resource "aws_ebs_snapshot" "example_snapshot" {
   }
 }
 ```
+---
+#### 11. Create CloudWatch Alarm Using Terraform
+---
+This Terraform code creates a CloudWatch alarm that triggers when CPU utilization is greater than 70% for 2 evaluation periods.
+
+Solution - 
+```sh
+resource "aws_cloudwatch_metric_alarm" "cpu_alarm" {
+  alarm_name          = "cpu_alarm"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "70"
+  alarm_description   = "This alarm triggers when CPU > 70%"
+  actions_enabled     = true
+}
+```
+---
+#### 12. Create Public S3 Bucket Using Terraform
+---
+Creates a public S3 bucket with read access.
+
+Solution - 
+```sh
+resource "aws_s3_bucket" "public_bucket" {
+  bucket = "devops-public-bucket"
+  acl    = "public-read"
+}
+```
+---
+#### 13. Create Private S3 Bucket Using Terraform
+---
+Creates a private S3 bucket with default (private) ACL.
+Soltion - 
+```sh
+resource "aws_s3_bucket" "private_bucket" {
+  bucket = "devops-private-bucket"
+  acl    = "private"
+}
+```
+---
+#### 14. Create IAM User Using Terraform
+---
+Creates an IAM user named iamuser_ammar.
+
+Solution - 
+
+```sh
+resource "aws_iam_user" "iam_user" {
+  name = "iamuser_ammar"
+
+  tags = {
+    name = "iamuser_ammar"
+  }
+}
+```
+---
+#### 15. Create IAM Group Using Terraform
+---
+Creates an IAM group named iamgroup_ravi.
+
+Solution - 
+```sh
+resource "aws_iam_group" "iamgroup_ravi" {
+  name = "iamgroup_ravi"
+}
+```
+---
+#### 16. Create IAM Policy Using Terraform
+---
+Creates an IAM policy that gives EC2 read-only access.
+
+Solution - 
+```sh
+resource "aws_iam_policy" "iampolicy_ravi" {
+  name        = "iampolicy_ravi"
+  description = "Policy to allow users to view all ec2 details"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+```
+---
+#### 17. Create DynamoDB Table Using Terraform
+---
+Creates a DynamoDB table named devops-users with a primary key devops_id of type String.
+
+Solution - 
+```sh
+resource "aws_dynamodb_table" "devops_users" {
+  name           = "devops-users"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "devops_id"
+
+  attribute {
+    name = "devops_id"
+    type = "S"
+  }
+}
+```
+---
+To be updated
