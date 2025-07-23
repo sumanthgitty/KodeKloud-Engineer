@@ -196,21 +196,20 @@ resource "aws_ebs_snapshot" "example_snapshot" {
 ---
 #### 11. Create CloudWatch Alarm Using Terraform
 ---
-This Terraform code creates a CloudWatch alarm that triggers when CPU utilization is greater than 70% for 2 evaluation periods.
+This Terraform code creates a CloudWatch alarm that triggers when CPU utilization is greater than 80% for single 1 evaluation period and set evalution period to 5 minutes.
 
 Solution - 
 ```sh
 resource "aws_cloudwatch_metric_alarm" "cpu_alarm" {
   alarm_name          = "cpu_alarm"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = "2"
+  evaluation_periods  = 1
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "120"
+  period              = 300
   statistic           = "Average"
-  threshold           = "70"
-  alarm_description   = "This alarm triggers when CPU > 70%"
-  actions_enabled     = true
+  threshold           = 80
+  alarm_description   = "This alarm triggers when CPU -> 80%"
 }
 ```
 ---
@@ -220,9 +219,43 @@ Creates a public S3 bucket with read access.
 
 Solution - 
 ```sh
-resource "aws_s3_bucket" "public_bucket" {
-  bucket = "devops-public-bucket"
+resource "aws_s3_bucket" "datacenter" {
+  bucket = "datacenter-s3-16148"
+
+  tags = {
+    Name = "datacenter-s3-16148"
+  }
+}
+
+resource "aws_s3_bucket_acl" "public_acl" {
+  bucket = aws_s3_bucket.datacenter.id
   acl    = "public-read"
+}
+
+resource "aws_s3_bucket_public_access_block" "public_access" {
+  bucket = aws_s3_bucket.datacenter.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_policy" "public_read_policy" {
+  bucket = aws_s3_bucket.datacenter.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Sid       = "PublicReadGetObject"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = ["s3:GetObject"]
+        Resource  = "${aws_s3_bucket.datacenter.arn}/*"
+      }
+    ]
+  })
 }
 ```
 ---
@@ -231,9 +264,21 @@ resource "aws_s3_bucket" "public_bucket" {
 Creates a private S3 bucket with default (private) ACL.
 Soltion - 
 ```sh
-resource "aws_s3_bucket" "private_bucket" {
-  bucket = "devops-private-bucket"
-  acl    = "private"
+resource "aws_s3_bucket" "nautilus" {
+  bucket = "nautilus-s3-17939"
+
+  tags = {
+    Name        = "nautilus-s3-17939"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "block_public-access" {
+  bucket = aws_s3_bucket.nautilus.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 ```
 ---
