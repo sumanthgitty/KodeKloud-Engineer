@@ -352,4 +352,118 @@ resource "aws_dynamodb_table" "devops_users" {
 }
 ```
 ---
-To be updated
+####  18: Create Kinesis Stream Using Terraform
+---
+Create a Kinesis stream named `xfusion-stream`.
+
+Solution -
+```sh
+resource "aws_kinesis_stream" "xfusion_stream" {
+  name             = "xfusion-stream"
+  shard_count      = 1
+  retention_period = 24
+}
+```
+---
+#### 19: Create SNS Topic Using Terraform
+---
+Create an SNS topic named devops-notifications.
+
+Solution - 
+```sh
+resource "aws_sns_topic" "devops_notifications" {
+  name = "devops-notifications"
+}
+```
+---
+#### 20: Create SSM Parameter Using Terraform
+---
+Create a parameter named nautilus-ssm-parameter and retrieve it using Terraform
+
+Solution - 
+```sh
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_ssm_parameter" "nautilus_ssm_parameter" {
+  name  = "nautilus-ssm-parameter"
+  type  = "String"
+  value = "nautilus-value"
+}
+
+data "aws_ssm_parameter" "retrieved_parameter" {
+  name = aws_ssm_parameter.nautilus_ssm_parameter.name
+}
+
+output "retrieved_ssm_value" {
+  value = data.aws_ssm_parameter.retrieved_parameter.value
+}
+```
+---
+#### 21: CloudWatch Setup Using Terraform
+---
+Create a log group xfusion-log-group and a log stream xfusion-log-stream.
+
+Solution - 
+```sh
+resource "aws_cloudwatch_log_group" "xfusion_log_group" {
+  name = "xfusion-log-group"
+}
+
+resource "aws_cloudwatch_log_stream" "xfusion_log_stream" {
+  name           = "xfusion-log-stream"
+  log_group_name = aws_cloudwatch_log_group.xfusion_log_group.name
+}
+```
+---
+#### 22: CloudFormation Template Deployment Using Terraform
+---
+Create a CloudFormation stack named nautilus-stack to deploy an S3 bucket nautilus-bucket-10153 with versioning enabled.
+
+Solution - 
+```sh
+resource "aws_cloudformation_stack" "nautilus_stack" {
+  name = "nautilus-stack"
+
+  template_body = <<STACK
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "nautilus-bucket-10153",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      }
+    }
+  }
+}
+STACK
+}
+```
+---
+#### 23: OpenSearch Setup Using Terraform
+---
+Create an OpenSearch domain named xfusion-es.
+
+Solution - 
+```sh
+resource "aws_opensearch_domain" "xfusion_es" {
+  domain_name    = "xfusion-es"
+  engine_version = "Elasticsearch_7.10"
+
+  cluster_config {
+    instance_type = "t3.small.search"
+  }
+
+  tags = {
+    Domain = "TestDomain"
+  }
+}
+```
+---
+to be updated
+
