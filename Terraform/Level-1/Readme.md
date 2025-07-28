@@ -465,5 +465,25 @@ resource "aws_opensearch_domain" "xfusion_es" {
 }
 ```
 ---
+#### 24: Create Secrets Manager Secret Using Terraform
+---
+- The secret name should be nautilus-secret.
+- The secret value should contain a key-value pair with username: admin and password: Namin123
+
+Solution - 
+```sh
+resource "aws_secretsmanager_secret" "nautilus_secret" {
+  name = "nautilus-secret"
+}
+
+resource "aws_secretsmanager_secret_version" "nautilus_secret_version" {
+  secret_id     = aws_secretsmanager_secret.nautilus_secret.id
+  secret_string = jsonencode({
+    username = "admin",
+    password = "Namin123"
+  })
+}
+```
+---
 to be updated
 
