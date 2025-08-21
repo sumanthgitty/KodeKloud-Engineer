@@ -518,5 +518,28 @@ resource "aws_iam_user_policy_attachment" "test-attach" {
 }
 ```
 ---
+#### 28: 
+---
+- The S3 bucket name is nautilus-s3-20019, enable versioning for this bucket using Terraform.
+
+Solution - 
+```sh
+resource "aws_s3_bucket" "s3_ran_bucket" {
+  bucket = "nautilus-s3-20019"
+  acl    = "private"
+
+  tags = {
+    Name        = "nautilus-s3-20019"
+  }
+}
+
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.s3_ran_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+```
+---
 to be updated
 
