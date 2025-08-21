@@ -541,5 +541,29 @@ resource "aws_s3_bucket_versioning" "versioning_example" {
 }
 ```
 ---
+#### 29: Delete Backup from S3 Using Terraform
+---
+A S3 bucket named nautilus-bck-3485 already exists.
+
+1) Copy the contents of nautilus-bck-3485 S3 bucket to /opt/s3-backup/ directory on terraform-client host (the landing host once you load this lab).
+
+2) Delete the S3 bucket nautilus-bck-3485.
+
+3) Use the AWS CLI through Terraform to accomplish this task—for example, by running AWS CLI commands within Terraform. The Terraform working directory is /home/bob/terraform. Update the main.tf file (do not create a separate .tf file) to accomplish this task.
+
+Solution - 
+```sh 
+# Copy S3 bucket contents locally and delete the bucket
+resource "null_resource" "s3_cleanup" {
+  provisioner "local-exec" {
+    command = <<EOT
+      aws s3 cp s3://nautilus-bck-3485 /opt/s3-backup/ --recursive --region us-east-1
+      aws s3 rm s3://nautilus-bck-3485 --recursive --region us-east-1
+      aws s3api delete-bucket --bucket nautilus-bck-3485 --region us-east-1
+    EOT
+  }
+}
+```
+---
 to be updated
 
