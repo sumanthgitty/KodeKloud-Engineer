@@ -518,7 +518,7 @@ resource "aws_iam_user_policy_attachment" "test-attach" {
 }
 ```
 ---
-#### 28: 
+#### 28: Enable S3 Versioning Using Terraform
 ---
 - The S3 bucket name is nautilus-s3-20019, enable versioning for this bucket using Terraform.
 
