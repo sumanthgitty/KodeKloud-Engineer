@@ -485,5 +485,38 @@ resource "aws_secretsmanager_secret_version" "nautilus_secret_version" {
 }
 ```
 ---
+#### 25: Change Instance Type Using Terraform
+---
+- Change the instance type from t2.micro to t2.nano for datacenter-ec2 instance
+
+Solution - 
+```sh
+# Provision EC2 instance
+resource "aws_instance" "ec2" {
+  ami           = "ami-0c101f26f147fa7fd"
+  instance_type = "t2.nano"   # changed from t2.micro
+  subnet_id     = ""
+  vpc_security_group_ids = [
+    "sg-eddea21fbe379c28b"
+  ]
+
+  tags = {
+    Name = "datacenter-ec2"
+  }
+}
+```
+---
+#### 27: Attach Policy Using Terraform
+---
+- Attach the existing IAM policy iampolicy_jim to the IAM user iamuser_jim
+
+Solution -
+```sh
+resource "aws_iam_user_policy_attachment" "test-attach" {
+  user       = aws_iam_user.user.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+```
+---
 to be updated
 
