@@ -670,5 +670,125 @@ resource "aws_security_group" "example" {
 }
 ```
 ---
-to be updated
+#### 37: Elastic IP Variable Setup Using Terraform
+---
+For this task, create an AWS Elastic IP using Terraform with the following requirement:
+- The Elastic IP name devops-eip should be stored in a variable named KKE_eip.
+
+Solution - 
+- variables.tf
+```sh
+variable "KKE_eip" {
+    default = "devops-eip"
+}
+```
+- main.tf
+```sh 
+resource "aws_eip" "devops_eip" {
+  domain   = "vpc"
+
+  tags = {
+    Name = var.KKE_eip
+  }
+}
+```
+---
+#### 38: User Variable Setup Using Terraform
+---
+For this task, create an AWS IAM User using Terraform with the following requirements:
+- The IAM User name iamuser_ammar should be stored in a variable named KKE_user.
+
+Solution - 
+- Variables.tf
+```sh
+variable "KKE_user" {
+    default = "iamuser_ammar"
+}
+```
+- main.tf
+```sh
+resource "aws_iam_user" "iam_user" {
+  name = var.KKE_user
+
+  tags = {
+    Name = var.KKE_user
+  }
+}
+```
+---
+#### 39: Role Variable Setup Using Terraform
+---
+For this task, create an AWS IAM role using Terraform with the following requirements:
+- The IAM role name iamrole_mark should be stored in a variable named KKE_iamrole.
+ 
+Solution - 
+- variables.tf
+```sh
+variable "KKE_iamrole" {
+    default = "iamrole_mark"
+}
+```
+- main.tf
+```sh
+resource "aws_iam_role" "example_role" {
+    name = var.KKE_iamrole
+
+    assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+    tags = {
+        Name = var.KKE_iamrole
+    }  
+}
+```
+---
+#### 40: Policy Variable Setup Using Terraform
+---
+For this task, create an AWS IAM policy using Terraform with the following requirements:
+- The IAM policy name iampolicy_james should be stored in a variable named KKE_iampolicy.
+
+Solution - 
+- variables.tf
+```sh
+variable "KKE_iampolicy" {
+  description = "Name of the IAM Policy"
+  default     = "iampolicy_james"
+}
+```
+- main.tf
+```sh
+resource "aws_iam_policy" "iam_policy" {
+  name        = var.KKE_iampolicy
+  description = "IAM policy for James"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "s3:ListBucket",
+          "s3:GetObject"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+
+  tags = {
+    Name = var.KKE_iampolicy
+  }
+}
+```
 
