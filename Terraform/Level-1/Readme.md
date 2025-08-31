@@ -565,5 +565,110 @@ resource "null_resource" "s3_cleanup" {
 }
 ```
 ---
+#### 30: Delete EC2 Instance Using Terraform
+---
+Solution -
+Initialize Terraform
+```bash
+terraform init
+```
+Delete EC2 instance
+- Option 1: Destroy all resources in the state (only if safe)
+```bash
+terraform destroy
+```
+- Option 2: Destroy only the EC2 instance (safer)
+```bash
+terraform destroy -target=aws_instance.nautilus-ec2
+```
+---
+#### 31, 32, 33: - Delete IAM Group Using Terraform, - Delete IAM Role Using Terraform, - Delete VPC Using Terraform
+---
+Solution - 
+```bash
+terraform init
+terraform state list  # Check resources managed by Terraform
+terraform destroy 
+```
+---
+#### 34: Copy Data to S3 Using Terraform
+---
+S3 bucket named devops-cp-22317 already exists. Copy the file /tmp/devops.txt to s3 bucket devops-cp-22317 using Terraform
+
+Solution -
+```bash
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "devops-cp-22317"
+  acl    = "private"
+
+  tags = {
+    Name        = "devops-cp-22317"
+  }
+}
+
+resource "null_resource" "aws_cli" {
+  provisioner "local-exec" {
+    command = "aws s3 cp /tmp/devops.txt s3://devops-cp-22317"
+  }
+}
+```
+---
+#### 35: VPC Variable Setup Using Terraform
+---
+For this task, create an AWS VPC using Terraform with the following requirements:
+- The VPC name xfusion-vpc should be stored in a variable named KKE_vpc.
+- The VPC should have a CIDR block of 10.0.0.0/16.
+
+Solution - 
+- variables.tf
+```sh
+variable "KKE_vpc" {
+    description = "Name of vpc"
+    default = "xfusion-vpc"
+}
+```
+- main.tf
+```sh
+resource "aws_vpc" "main" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = var.KKE_vpc
+  }
+}
+```
+---
+#### 36: Security Group Variable Setup Using Terraform
+---
+For this task, create an AWS Security Group using Terraform with the following requirements:
+- The Security Group name nautilus-sg should be stored in a variable named KKE_sg.
+
+Solution -
+- variables.tf
+```sh
+variable "KKE_sg" {
+    default = "nautilus-sg"  
+}
+```
+- main.tf
+```sh
+resource "aws_security_group" "example" {
+  name = var.KKE_sg
+  description = "security group"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  } 
+  
+  tags = {
+    Name = var.KKE_sg        
+  }
+}
+```
+---
 to be updated
 
