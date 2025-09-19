@@ -42,3 +42,5 @@ After apply, Terraform will display:
 
 - kke_vpc_name → Name of the created VPC
 - kke_subnet_name → Name of the created Subnet
+
+![Screenshot](./TASK1.png)
