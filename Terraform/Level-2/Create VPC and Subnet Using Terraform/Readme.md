@@ -1,4 +1,4 @@
-#### Task - 
+#### Task - Create VPC and Subnet Using Terraform
 ---
 To ensure proper resource provisioning order, the DevOps team wants to explicitly define the dependency between an AWS VPC and a Subnet. The objective is to create a VPC and then a Subnet that explicitly depends on it using Terraform's depends_on argument.
 
