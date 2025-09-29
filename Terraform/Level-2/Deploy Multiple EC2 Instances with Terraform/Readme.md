@@ -11,8 +11,6 @@ Create 3 EC2 instances using the count parameter. Name each EC2 instance with th
 
 #### Solution - 
 ---
-#### Solution - 
----
 
 - [main.tf](./main.tf)
 - [locals.tf](./locals.tf)
