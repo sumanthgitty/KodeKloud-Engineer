@@ -1,4 +1,4 @@
-#### Task - 
+#### Task - Launch EC2 Instance from Custom AMI Using Terraform
 
 The Nautilus DevOps team needs to create an AMI from an existing EC2 instance for backup and scaling purposes. The following steps are required:
 
