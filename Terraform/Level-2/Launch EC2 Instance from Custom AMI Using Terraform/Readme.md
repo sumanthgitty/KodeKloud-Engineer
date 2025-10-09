@@ -1,5 +1,5 @@
 #### Task - Launch EC2 Instance from Custom AMI Using Terraform
-
+---
 The Nautilus DevOps team needs to create an AMI from an existing EC2 instance for backup and scaling purposes. The following steps are required:
 
 - They have an existing EC2 instance named `xfusion-ec2`.
@@ -11,7 +11,7 @@ The Nautilus DevOps team needs to create an AMI from an existing EC2 instance fo
 `KKE_new_instance_id` for the EC2 instance ID you created.
 
 #### Solution - 
-
+---
 - [main.tf](./main.tf)
 - [outputs.tf](./outputs.tf)
 
