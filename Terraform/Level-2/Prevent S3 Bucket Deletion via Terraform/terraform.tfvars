@@ -1,0 +1,1 @@
+KKE_BUCKET_NAME = "devops-s3-258"
