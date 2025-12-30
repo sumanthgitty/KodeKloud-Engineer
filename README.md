@@ -21,7 +21,7 @@ You can access all my completed Hands-on tasks on DevOps technologies here:
 - [AWS](https://github.com/sumanthgitty/KodeKloud-Engineer/tree/main/AWS)
 
 ## Screenshot
-![Screenshot of My KodeKloud Engineer Profile](https://github.com/sumanthgitty/KodeKloud-Engineer/blob/main/Screenshot%20and%20Certificates/kodekloud%20leaderboard.png)
+![Screenshot of My KodeKloud Engineer Profile](./Screenshot%20and%20Certificates/kodekloud%20leaderboard-1.png)
 
 ![KodeKloud-2025-Recap](./Screenshot%20and%20Certificates/KodeKloud-2025-Recap.png)
 
